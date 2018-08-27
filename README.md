@@ -1,13 +1,7 @@
-# stcoh_exome_cov_summary
-Extract target coverage for selected genes from exome sequencing
+# Extract Picard target coverage for the specified genes
+perl extract_genes_target_coverage.pl in_gene_list in_Regions.interval_list out_gene_list_out
 
 
-Step 1:
-  perl extract_genes_target_coverage.pl \
-       in_gene_list \
-       in_Regions.interval_list \
-       out_gene_list_out
-       
 ## in_gene_list example:
 CTC1
 DAXX
