@@ -5,7 +5,6 @@ perl extract_genes_target_coverage.pl in_gene_list in_Regions.interval_list out_
 ## in_gene_list example:
 CTC1
 
-
 DAXX
 DDX41
 DKC1
