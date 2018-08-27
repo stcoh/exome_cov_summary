@@ -20,8 +20,11 @@ DNMT3A
 
 ## in_Regions.interval_list example:
 @HD     VN:1.5  SO:coordinate
+
 @SQ     SN:chrM LN:16569
+
 @SQ     SN:chr1 LN:249250621
+
 @SQ     SN:chr2 LN:243199373
 @SQ     SN:chr3 LN:198022430
 @SQ     SN:chr4 LN:191154276
