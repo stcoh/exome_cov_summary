@@ -1,4 +1,4 @@
-# Extract Picard target coverage for the specified genes
+# Step 1: Extract Picard target coverage for the specified genes
 perl extract_genes_target_coverage.pl in_gene_list in_Regions.interval_list out_gene_list_out
 
 
@@ -110,23 +110,15 @@ chr1    27092707        27092862        +       ARID1A
 ...
 
 
-Step 2:
-  awk -F"\t" '{print NF}' out_gene_list_out | uniq -c
-  ## Get the number of columns; there are 2797 columns for example.
+# Step 2: Some post-processings
+  awk -F"\t" '{print NF}' out_gene_list_out | uniq -c  ## Get the number of columns; there are 2797 columns for example.
   
-  head -1 out_gene_list_out | awk -F"\t" '{for(i=2;i<=2797;i+=2) printf "%s\t",$i ;print ""}' > colnames
-  ## Add a tab at the beginning of colnames
+  head -1 out_gene_list_out | awk -F"\t" '{for(i=2;i<=2797;i+=2) printf "%s\t",$i ;print ""}' > colnames  ## Add a tab at the beginning of colnames
   
   awk -F"\t" '{for(i=1;i<=2797;i+=2) printf "%s\t",$i ;print ""}' out_gene_list_out > target_coverage
   
-  cat colnames target_coverage > colnames_plus_target_coverage
-  ## Copy and transpose paste
-  ## Add 'Target_Number' in Cell 1A
-  ## Save sheet as rowtarget_colsample.txt
-  
-  
-Step 3:
-  perl add_target_details_modified_for_interval_list.pl \
-       in_Regions.interval_list \
-       rowtarget_colsample.txt \
-       rowtarget_colsample_add_target_details.txt
+  cat colnames target_coverage > colnames_plus_target_coverage  ## Copy and transpose paste, add 'Target_Number' in Cell 1A, and save sheet as rowtarget_colsample.txt
+
+
+# Step 3: Add target details
+  perl add_target_details_modified_for_interval_list.pl in_Regions.interval_list rowtarget_colsample.txt rowtarget_colsample_add_target_details.txt
